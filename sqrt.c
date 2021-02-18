@@ -25,6 +25,6 @@ int main()
         return 0;
     }
     d = sqrt (d);
-    printf ("%.5f %.5f\n", (-b-d)/(2*a), (-b+d)/(2*a));
+    printf ("%.5f %.5f\n", ( - b - d ) / (2 * a ), ( - b + d ) / ( 2 * a ));
     return 0;
 }
