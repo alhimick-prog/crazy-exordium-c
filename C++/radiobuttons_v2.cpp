@@ -55,7 +55,7 @@ enum {
     spacing = 3,
     butt_w = 150,
     butt_h = 40,
-    opt_w = 120,
+    opt_w = 130,
     str_h = 20,
     letter_size = 90,
     opt_b_h = 140,
@@ -89,13 +89,26 @@ int main()
         ctrl->rb_letter[i] = new Fl_Radio_Round_Button(
             c_x_opt_l, high_value, opt_w, str_h, colnames[i]);
     }
-    int cb_c_x = c_x_opt_l;
-    int cb_c_y = c_y_opt_l + str_h * 6 + spacing * 6;
-    ctrl->cb = new Fl_Check_Button(cb_c_x, cb_c_y, opt_w, str_h,
+    int cb_x = c_x_opt_l;
+    int cb_y = c_y_opt_l + str_h * 6 + spacing * 6;
+    ctrl->cb = new Fl_Check_Button(cb_x, cb_y, opt_w, str_h,
                                     "show letter");
     lett->end();
-
-
+    int box_x = opt_w + spacing * 2;
+    int box_y = spacing;
+    int box_w = butt_w * 2 - opt_w;
+    int box_h = opt_b_h;
+    ctrl->box = new Fl_Box(box_x, box_y, box_w, box_h);
+    ctrl->box->labelsize(letter_size);
+    ctrl->box->box(FL_FLAT_BOX);
+    int butt_x = spacing;
+    int butt_y = opt_b_h + opt_l_h + spacing * 3;
+    Fl_Button *set_b = new Fl_Button(butt_x, butt_y, butt_w, butt_h,
+                                     "Set!");
+    set_b->callback(set_callback, (void*)ctrl);
+    Fl_Button *close_b = new Fl_Button(butt_x + butt_w + spacing * 2,
+                                       butt_y, butt_w, butt_h, "Quit");
+    close_b->callback(exit_callback, 0);
     win->end();
     win->show();
     return Fl::run();
