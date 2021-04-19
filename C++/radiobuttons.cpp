@@ -90,6 +90,8 @@ int main()
         ctrl->rb_letter[i] = new Fl_Radio_Round_Button(spacing,
                         high_value, option_w, string_h, colnames[i]);
     }
+    ctrl->cb = new Fl_Check_Button(3, 200, option_w, string_h,
+                                    "show letter");
     letter->end();
     int box_x = option_w + spacing * 2;
     int box_w = button_w * 2 - option_w;
