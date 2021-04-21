@@ -25,14 +25,14 @@ static void set_callback(Fl_Widget *w, void *user)
 {
     controls *c = (controls*)user;
     int i;
-    for(i = 0; i < 5; i++) {
+    for (i = 0; i < 5; i++) {
         if(c->rb_background[i]->value()) {
             c->box->color(colors[i]);
             break;
         }
     }
-    for(i = 0; i < 5; i++) {
-        if(c->rb_letter[i]->value()) {
+    for (i = 0; i < 5; i++) {
+        if (c->rb_letter[i]->value()) {
             c->box->labelcolor(colors[i]);
             break;
         }
@@ -45,9 +45,9 @@ static void exit_callback(Fl_Widget *w, void *)
     Fl_Widget *p;
     do {
         p = w->parent();
-        if(p)
+        if (p)
             w = p;
-        } while(p);
+        } while (p);
     w->hide();
 };
 
@@ -74,7 +74,7 @@ int main()
     Fl_Group *back = new Fl_Group(c_x_opt_b, c_y_opt_b, opt_w, opt_b_h, "");
     new Fl_Box(c_x_opt_b, c_y_opt_b, opt_w, str_h, "Background color:");
     int i;
-    for(i = 0; i < 5; i++) {
+    for (i = 0; i < 5; i++) {
         int high_value = c_y_opt_b + str_h * (i + 1) + spacing * (i + 1);
         ctrl->rb_background[i] = new Fl_Radio_Round_Button(
             c_x_opt_b, high_value, opt_w, str_h, colnames[i]);
@@ -84,7 +84,7 @@ int main()
     int c_y_opt_l = spacing * 2 + opt_b_h;
     Fl_Group *lett = new Fl_Group(c_x_opt_l, c_y_opt_l, opt_w, opt_l_h, "");
     new Fl_Box(c_x_opt_l, c_y_opt_l, opt_w, str_h, "Letter settings:");
-    for(i = 0; i < 5; i++) {
+    for (i = 0; i < 5; i++) {
         int high_value = c_y_opt_l + str_h * (i + 1) + spacing * (i + 1);
         ctrl->rb_letter[i] = new Fl_Radio_Round_Button(
             c_x_opt_l, high_value, opt_w, str_h, colnames[i]);
