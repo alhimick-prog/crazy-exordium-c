@@ -22,6 +22,8 @@ static const char *const buttsymb[] =
 { "^", "(", ")", "+", "7", "8", "9", "-",
 "4", "5", "6", "*", "1", "2", "3", "/", "0", "." };
 
+static const char *const additsymb[] = { "C", "<-", "Root", "=" };
+
 enum {
     spacing = 3,
     butt_h = 40,
@@ -30,6 +32,22 @@ enum {
     field_w = 240,
     quant_butt_in_str = 4
 };
+
+static void key_press(Fl_Widget *w, void *user)
+{
+    scelet *press = (scelet*)user;
+    for (int i = 0; i < 18; i++) {
+        if(press->numb[i] == w) {
+            press->inp->insert(buttsymb[i]);
+        }
+    }
+}
+
+static void press_delete(Fl_Widget *w, void *user)
+{
+    scelet *press = (scelet*)user;
+    press->inp->insert("/b");
+}
 
 int main()
 {
@@ -42,17 +60,21 @@ int main()
     gov->inp = new Fl_Input(spacing, spacing * 2 + butt_h, field_w, butt_h);
 
     int butt_y = spacing * 3 + butt_h * 2;
-    gov->clear = new Fl_Button(spacing, butt_y, double_butt_w, butt_h, "C");
+    gov->clear = new Fl_Button(spacing,
+                               butt_y,
+                               double_butt_w,
+                               butt_h,
+                               additsymb[0]);
     gov->del = new Fl_Button(spacing + double_butt_w,
                              butt_y,
                              butt_w,
                              butt_h,
-                             "<-");
+                             additsymb[1]);
     gov->extract_root = new Fl_Button(spacing + butt_w * 3,
                                       butt_y,
                                       butt_w,
                                       butt_h,
-                                      "Root");
+                                      additsymb[2]);
     
     for (int i = 0; i < 18; i++) {
         int butt_x = spacing;
@@ -64,13 +86,14 @@ int main()
                                      butt_w,
                                      butt_h,
                                      buttsymb[i]);
+        gov->numb[i]->callback(key_press, (void*)gov);
     };
 
     gov->evaluation = new Fl_Button(spacing + butt_w * 2,
                                     spacing * 3 + butt_h * 7,
                                     double_butt_w,
                                     butt_h,
-                                    "=");
+                                    additsymb[3]);
 
     win->end();
     win->show();
