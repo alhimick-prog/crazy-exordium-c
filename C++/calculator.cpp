@@ -63,7 +63,8 @@ static void press_allclear(Fl_Widget *w, void *user)
 static void press_delete(Fl_Widget *w, void *user)
 {
     scelet *press = (scelet*)user;
-    press->inp->insert("/b");
+    press->inp->cut(-1);
+    press->inp->take_focus();
 }
 
 static void press_evaluation(Fl_Widget *w, void *user)
@@ -103,6 +104,7 @@ int main()
                              butt_w,
                              butt_h,
                              additsymb[2]);
+    gov->del->callback(press_delete, (void*)gov);
     gov->extract_root = new Fl_Button(spacing + butt_w * 3,
                                       butt_y,
                                       butt_w,
