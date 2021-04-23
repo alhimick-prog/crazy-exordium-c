@@ -12,6 +12,7 @@ struct scelet {
     Fl_Output *outp;
     Fl_Input *inp;
     Fl_Button *clear;
+    Fl_Button *allclear;
     Fl_Button *del;
     Fl_Button *extract_root;
     Fl_Button *numb[18];
@@ -22,7 +23,7 @@ static const char *const buttsymb[] =
 { "^", "(", ")", "+", "7", "8", "9", "-",
 "4", "5", "6", "*", "1", "2", "3", "/", "0", "." };
 
-static const char *const additsymb[] = { "C", "<-", "Root", "=" };
+static const char *const additsymb[] = { "C", "AC", "<-", "Root", "=" };
 
 enum {
     spacing = 3,
@@ -40,13 +41,37 @@ static void key_press(Fl_Widget *w, void *user)
         if(press->numb[i] == w) {
             press->inp->insert(buttsymb[i]);
         }
+    press->inp->take_focus();
     }
+}
+
+static void press_clear(Fl_Widget *w, void *user)
+{
+    scelet *press = (scelet*)user;
+    press->inp->value("");
+    press->inp->take_focus();
+}
+
+static void press_allclear(Fl_Widget *w, void *user)
+{
+    scelet *press = (scelet*)user;
+    press->inp->value("");
+    press->outp->value("");
+    press->inp->take_focus();
 }
 
 static void press_delete(Fl_Widget *w, void *user)
 {
     scelet *press = (scelet*)user;
     press->inp->insert("/b");
+}
+
+static void press_evaluation(Fl_Widget *w, void *user)
+{
+    scelet *press = (scelet*)user;
+    const char *const input_string = press->inp->value();
+    press->outp->value(input_string);
+    press->inp->take_focus();
 }
 
 int main()
@@ -56,25 +81,33 @@ int main()
     Fl_Window *win = new Fl_Window(win_w, win_h, "Calculator_scelet");
 
     scelet *gov = new scelet;
+
     gov->outp = new Fl_Output(spacing, spacing, field_w, butt_h);
     gov->inp = new Fl_Input(spacing, spacing * 2 + butt_h, field_w, butt_h);
 
     int butt_y = spacing * 3 + butt_h * 2;
     gov->clear = new Fl_Button(spacing,
                                butt_y,
-                               double_butt_w,
+                               butt_w,
                                butt_h,
                                additsymb[0]);
+    gov->clear->callback(press_clear, (void*)gov);
+    gov->allclear = new Fl_Button(spacing + butt_w,
+                                  butt_y,
+                                  butt_w,
+                                  butt_h,
+                                  additsymb[1]);
+    gov->allclear->callback(press_allclear, (void*)gov);
     gov->del = new Fl_Button(spacing + double_butt_w,
                              butt_y,
                              butt_w,
                              butt_h,
-                             additsymb[1]);
+                             additsymb[2]);
     gov->extract_root = new Fl_Button(spacing + butt_w * 3,
                                       butt_y,
                                       butt_w,
                                       butt_h,
-                                      additsymb[2]);
+                                      additsymb[3]);
     
     for (int i = 0; i < 18; i++) {
         int butt_x = spacing;
@@ -93,8 +126,10 @@ int main()
                                     spacing * 3 + butt_h * 7,
                                     double_butt_w,
                                     butt_h,
-                                    additsymb[3]);
+                                    additsymb[4]);
+    gov->evaluation->callback(press_evaluation, (void*)gov);
 
+    gov->inp->take_focus();
     win->end();
     win->show();
     return Fl::run();
