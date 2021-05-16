@@ -1,0 +1,11 @@
+guide https://www.rubyguides.com/ruby-tutorial/
+string methods https://www.rubyguides.com/2018/01/ruby-string-methods/
+arrays https://www.rubyguides.com/2015/05/ruby-arrays/
+hash https://ruby-doc.org/core-2.5.1/Hash.html
+operators https://www.rubyguides.com/2018/07/ruby-operators/
+strange methods https://www.rubyguides.com/2017/10/7-powerful-ruby-methods/
+gems (library) https://www.rubyguides.com/2018/09/ruby-gems-gemfiles-bundler/
+modules http://ruby-for-beginners.rubymonstas.org/advanced/modules.html
+ruby on rails or sinatra, how install gems
+
+last https://www.rubyguides.com/ruby-tutorial/object-oriented-programming/
