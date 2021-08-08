@@ -1,4 +1,8 @@
 // fltk/buttons_demo.cpp
+// This program displays a window with 3 interactive buttons.
+// This program uses library fltk.
+// To compile this program, you need to install library fltk.
+// Compilation is performed by the command: fltk-config --compile file_name
 #include <FL/Fl.H>
 #include <FL/Fl_Window.H>
 #include <FL/Fl_Box.H>
@@ -11,7 +15,7 @@ enum {
     font_size_button = 20,
     heading_h = 80,
     heading_w = 400,
-    font_size_heading = 30
+    font_size_heading = 25
 };
 
 static const char *msg[] = {

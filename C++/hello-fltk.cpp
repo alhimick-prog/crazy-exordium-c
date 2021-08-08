@@ -1,4 +1,5 @@
 // fltk/hello-fltk.cpp
+// Displays a window with label.
 #include <FL/Fl.H>
 #include <FL/Fl_Window.H>
 #include <FL/Fl_Box.H>

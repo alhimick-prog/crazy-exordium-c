@@ -1,4 +1,5 @@
 // fltk/radiobuttons_v3.cpp
+// Latest version. Only code refactoring.
 #include <FL/Fl.H>
 #include <FL/Fl_Window.H>
 #include <FL/Fl_Box.H>
