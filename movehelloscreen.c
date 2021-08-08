@@ -1,4 +1,7 @@
 /* movehelloscreen.c */
+/* Program displays in the terminal the inscription, which can be moved. */
+/* Exiting the program - Esc*/
+/* Library is used for compilation: -lncurses */
 #include <ncurses.h>
 
 static const char message[] = "Hello, world!";
@@ -22,8 +25,12 @@ static void hide_message(int x, int y)
 
 static void check(int *coord, int max)
 {
-    if(*coord > max)
+    if(*coord > max){
         *coord = max;
+    }
+    if(*coord < 0){
+        *coord = 0;
+    }
 }
 
 static void

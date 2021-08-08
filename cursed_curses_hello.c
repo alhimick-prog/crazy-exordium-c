@@ -1,9 +1,11 @@
-/* curses_hello.c */
+/* cursed_curses_hello.c */
+/* Displayed 5 lables in terminal with delay = delay_duration */
+/* Library is used for compilation: -lncurses */
 #include <curses.h>
 #include <unistd.h>
 
-const char message[] = "Hell!!!";
-enum { delay_duration = 3 };
+const char message[] = "Hello!";
+enum { delay_duration = 2 };
 
 int main()
 {

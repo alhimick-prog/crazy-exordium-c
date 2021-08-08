@@ -1,4 +1,9 @@
 /* sqrt_eq.c */
+/* Program solves quadratic equations of the form ax^2 + bx +c = 0 */
+/* After starting, enter three numbers (equation coefficients a, b and c) */
+/* If the equation has a solution, the roots will be displayed. */
+/* Roots are displayed with 5-digit precision. */
+/* Library is used for compilation: -lm */
 #include <stdio.h>
 #include <math.h>
 

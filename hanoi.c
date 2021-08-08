@@ -1,4 +1,8 @@
 /* hanoi.c */
+/* Еhis program solves the Hanoi Towers problem using recursion.*/
+/* At startup, you need to pass the number of rings as a parameter. */
+/* The solution is displayed as lines:*/
+/* Ring number: the number of the rod on which the ring is located -> target rod number */
 #include <stdio.h>
 #include <stdlib.h>
 
